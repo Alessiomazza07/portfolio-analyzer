@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import './dashboard.css'
+import './footer.css'
 
-function Dashboard(){
+function Footer(){
     const navigate=useNavigate();
 
     return(
@@ -11,4 +11,4 @@ function Dashboard(){
     );
 }
 
-export default Dashboard
+export default Footer

@@ -1,0 +1,56 @@
+h2.title,h4.title{
+  margin-top: 1rem;
+}
+form#sign{
+  background-color: #383942;
+  border-radius: 12px;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  padding: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center /*space-evenly*/;
+  border-radius: 10px;
+  color: #f0f0f0;
+}
+.field{
+  display: flex;
+  flex-direction: column;
+  align-content: start;
+  margin: .75rem auto;
+  gap: .25rem;
+}
+.field>input{
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+.info{
+  width: 80%;
+}
+button#current{
+  outline: none;
+  color: #F0F0F0;
+  background-color: #6782ff;
+  margin-bottom: .5rem;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 8px;
+  transition: all 0.4s ease-in-out;
+}
+button#current:hover{
+  background: #4A6AFF;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 7px 30px #646cff5e);
+}
+button#redirect{
+    background: none;
+    color: #4A6AFF;
+    border: none;
+    text-decoration: underline;
+}
+button#redirect:hover{
+    color: #3459ff;
+}

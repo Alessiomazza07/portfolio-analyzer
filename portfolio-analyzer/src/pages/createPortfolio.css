@@ -1,0 +1,57 @@
+h1{
+  margin: 1rem auto;
+  width: fit-content;
+  color: #e7e7e8;
+}
+form#create{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center/*space-evenly*/;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+}
+.parameter,.stock{
+  width: fit-content;
+  padding: .5rem;
+  border-radius: 10px;
+  margin: .25rem;
+}
+.parameter{
+  background-color: #b4b4b4;
+}
+.parameter>input, .stock>input{
+  width: 5rem;
+    border-radius: 4px;
+    padding: 3px;
+    text-align: center;
+    font-size: 1rem;
+    
+}
+.stocks{
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+.stock{
+    display: flex;
+    background-color: #6782ff;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+button.add{
+  border-radius: 50%;
+  font-size: 1.25rem;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: #6782ff;
+  border: none;
+}
+button.build{
+
+}
