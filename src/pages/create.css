@@ -1,0 +1,88 @@
+h1{
+  margin: 1rem auto;
+  width: fit-content;
+  color: #e7e7e8;
+}
+form#create{
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  row-gap: 1rem;
+  justify-content: center/*space-evenly*/;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+}
+.parameter,.stock{
+  display: flex;
+  gap: 1rem;
+  width: fit-content;
+  padding: .5rem;
+  border-radius: 10px;
+  margin: .25rem;
+  align-items: center;
+}
+.parameters{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+.parameter{
+  background-color: #b4b4b4;
+}
+.parameter>input, .stock>input{
+  width: 7.5rem;
+  border-radius: 4px;
+  padding: 3px;
+  text-align: center;
+  font-size: 1rem;
+}
+.stocks{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+.stock{
+  background-color: #6782ff;
+  align-items: center;
+  justify-content: space-evenly;
+}
+button.add{
+  border-radius: 50%;
+  font-size: 1.25rem;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: #6782ff;
+  border: none;
+  color: #e7e7e8;
+}
+button#build{
+  outline: none;
+  color: #F0F0F0;
+  background-color: #6782ff;
+  margin-bottom: .5rem;
+  padding: 10px 15px;
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+  border-radius: 8px;
+  transition: all 0.4s ease-in-out;
+  margin: 0 auto .5rem;
+}
+button#build:hover{
+  background: #4A6AFF;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 7px 30px #646cff5e);
+}
+button.remove{
+  border: none;
+  outline: none;
+  background: none;
+  color:#e7e7e8;
+  padding-right: 0.5rem;
+  font-size: 1.5rem;
+}

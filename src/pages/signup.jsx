@@ -1,10 +1,22 @@
 import { useNavigate} from 'react-router-dom';
+import { useEffect } from 'react'
 import { supabase } from "../services/supabaseClient";
 import { useState } from 'react';
 import './sign.css';
 
 function Signup(){
     const navigate=useNavigate();
+    const user=JSON.parse(sessionStorage.getItem("user"));
+    const from=sessionStorage.getItem("from");
+    useEffect(() => {
+      if(user){
+        if(from=="create")
+          navigate("/create")
+        else
+          navigate("/portfolios")
+      }
+    }, [user,from, navigate]);
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,28 +38,30 @@ function Signup(){
         setMessage("Controlla la tua email per confermare l'account.");
         return;
       }
-      const userId = data.user.id;
-      const { error: dbError } = await supabase.from("users").insert(
-          {
-            user_id: userId,
-            name: name,
-            email: email,
-            last_login: new Date().toISOString()
-          },
-      );
-     /* Altra chiamata equivalente che mostra la riga appena inserita
-        const { data, error } = await supabase
-        .from('users')
-        .insert([
-          { some_column: 'someValue', other_column: 'otherValue' },
-        ])
-        .select();*/
+
+      //creazione user
+      const user={
+        user_id: data.user.id,
+        name: name,
+        email: email,
+        last_login: new Date().toISOString()
+      };
+      //aggiunta user al session storage
+      sessionStorage.setItem("user",JSON.stringify(user));
+      //inserimento user nel db
+      const { error: dbError } = await supabase.from("users").insert([user,]);
       if (dbError) {
         setMessage("Errore salvataggio dati: " + dbError.message);
-      } else {
-        setMessage("Account creato correttamente!");
-        navigate("/create");
+        return;
       }
+      setMessage("Account creato correttamente!");
+
+      useEffect(() => {
+        if(from=="create")
+          navigate("/create")
+        else
+          navigate("/portfolios")
+      }, [user,from, navigate]);
     };
     return(
         <>
@@ -68,7 +82,7 @@ function Signup(){
             </div>
           </div>
           <button id="current" type="submit">Sign up</button>
-          <p>Already signed up? <button type="button" id="redirect" onClick={() => navigate('/signin')}>Login</button></p>
+          <p>Already signed up? <button type="button" id="redirect" onClick={(e) => navigate('/signin')}>Login</button></p>
           {message && <p>{message}</p>}
         </form>
         </>

@@ -34,3 +34,7 @@
   transform: translateY(-2px);
   filter: drop-shadow(0 7px 30px #646cff5e);
 }
+
+.sections>button.user-icon{
+  padding: 4px 8px;
+}
