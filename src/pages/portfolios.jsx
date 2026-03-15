@@ -25,8 +25,8 @@ function Portfolios() {
 
     const fetchPortfolios = async () => {
         const { data, error } = await supabase
-        .from("portfolios")
-        .select("port_id,port_name,start_date,end_date,benchmark,tickers")
+        .from("Portfolios")
+        .select("port_id,port_name,start_date,end_date,benchmark")
         .eq("user_id", user.user_id);
         if (error) {
             console.error("Error fetching portfolios:", error);
@@ -45,10 +45,11 @@ function Portfolios() {
             ) : (
               <div>
                 {portfolios.map((p) => (
-                  <div key={p.port_id}>{p.port_name}</div>
+                  <div className="portfolio" key={p.port_id}>{p.port_name}</div>
                 ))}
               </div>
             )}
+            <button type="button" onClick={() => navigate('/create')}>Create new portfolio</button>
           </div>
         </>
   );

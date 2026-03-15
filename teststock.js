@@ -1,16 +1,3 @@
-import { useNavigate } from 'react-router-dom'
-import './dashboard.css'
-
-function Dashboard(){
-    const navigate=useNavigate();
-
-    return(
-        <>
-        
-        </>
-    );
-}
-/*
 import YahooFinance from "yahoo-finance2";
 import fs from "fs";
 
@@ -39,7 +26,24 @@ async function main() {
 }
 
 main();
+
+
+
+
+
+
+
+
+/*
+import YahooFinance from "yahoo-finance2";
+
+const yahooFinance = new YahooFinance();
+
+const quote = await yahooFinance.quote('AAPL');
+
+console.log(quote);
+
+const { regularMarketPrice : price, currency } = quote;
+console.log(price);
+console.log(currency);
 */
-
-
-export default Dashboard

@@ -42,7 +42,7 @@ function Create(){
     event.preventDefault();
     const user = JSON.parse(sessionStorage.getItem("user"));
 
-    const {data:portfoliosList}=await supabase.from("portfolios").select("*").eq("user_id",user.user_id);
+    const {data:portfoliosList}=await supabase.from("Portfolios").select("*").eq("user_id",user.user_id);
     for (let row of portfoliosList) {
       if(portName==row.port_name){
         console.log("Portafoglio già esistente, cambia il nome");
@@ -57,7 +57,7 @@ function Create(){
       benchmark: benchmark,
       tickers: JSON.stringify(stocks),
     };
-    const { error: dbError } = await supabase.from("portfolios").insert([portfolio,]);
+    const { error: dbError } = await supabase.from("Portfolios").insert([portfolio,]);
     if (dbError) {
       console.log("Errore salvataggio dati: " + dbError.message);
       return;

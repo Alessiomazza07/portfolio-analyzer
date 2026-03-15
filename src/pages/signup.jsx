@@ -49,7 +49,7 @@ function Signup(){
       //aggiunta user al session storage
       sessionStorage.setItem("user",JSON.stringify(user));
       //inserimento user nel db
-      const { error: dbError } = await supabase.from("users").insert([user,]);
+      const { error: dbError } = await supabase.from("Users").insert([user,]);
       if (dbError) {
         setMessage("Errore salvataggio dati: " + dbError.message);
         return;

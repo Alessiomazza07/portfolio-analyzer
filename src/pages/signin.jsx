@@ -39,11 +39,11 @@ function Signin(){
         }
 
         await supabase
-        .from("users")
+        .from("Users")
         .update({ last_login: new Date().toISOString() })
         .eq("user_id", data.user.id);
 
-        const {data:result}=await supabase.from("users").select("name").eq("user_id",data.user.id);
+        const {data:result}=await supabase.from("Users").select("name").eq("user_id",data.user.id);
 
         const user={
           user_id: data.user.id,
@@ -52,12 +52,10 @@ function Signin(){
           last_login: new Date().toISOString()
         };
         sessionStorage.setItem("user",JSON.stringify(user));
-        useEffect(() => {
-          if(from=="create")
-            navigate("/create")
-          else
-            navigate("/portfolios")
-        }, [user,from, navigate]);
+        if(from=="create")
+          navigate("/create")
+        else
+          navigate("/portfolios")
     };
     return(
         <>
