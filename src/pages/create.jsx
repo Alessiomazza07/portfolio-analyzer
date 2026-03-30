@@ -2,7 +2,6 @@ import { useNavigate} from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import { supabase } from "../services/supabaseClient";
 import './create.css';
-import AssetsInput from '../components/assetsInput';
 
 function Create(){
   const navigate = useNavigate();
