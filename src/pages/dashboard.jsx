@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom'
+import { supabase } from "../services/supabaseClient";
 import './dashboard.css'
 
 function Dashboard(){
     const navigate=useNavigate();
+    
+
 
     return(
         <>

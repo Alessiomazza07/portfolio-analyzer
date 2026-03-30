@@ -1,6 +1,6 @@
 h1#cta-title{
   line-height: 1.15;
-  color: #e7e7e8;
+  color: var(--color-text-primary);
   margin:2rem auto;
   font-size: 4rem;
 }
@@ -16,14 +16,14 @@ button#cta-but{
   width: fit-content;
   height: fit-content;
   padding: 10px 20px;
-  background-color: #6782ff;
+  background-color: var(--color-action);
   border: none;
-  color: #e7e7e8;
+  color: var(--color-text-primary);
   margin: 1rem 4rem;
   transition: all 0.4s ease-in-out;
 }
 button#cta-but:hover{
-  background: #4A6AFF;
+  background: var(--color-action-hover);
   transform: translateY(-2px);
   filter: drop-shadow(0 7px 30px #646cff36);
 }

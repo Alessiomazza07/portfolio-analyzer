@@ -22,15 +22,15 @@
 }
 .sections>button{
   outline: none;
-  color: #F0F0F0;
-  background-color: #6782ff;
+  color: var(--color-text-primary);
+  background-color: var(--color-action);
   padding: 7px 14px;
   border: 0;
   border-radius: 8px;
   transition: all 0.4s ease-in-out;
 }
 .sections>button:hover {
-  background: #4A6AFF;
+  background: var(--color-action-hover);
   transform: translateY(-2px);
   filter: drop-shadow(0 7px 30px #646cff5e);
 }

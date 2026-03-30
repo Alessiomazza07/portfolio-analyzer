@@ -1,5 +1,80 @@
+:root{
+    --color-purple: oklch(62.7% .265 303.9);
+    --color-purple-light: oklch(71.4% .203 305.504);
+}
 .portfolio{
-    width: 80%;
+    width: 60%;
     margin: 1rem auto;
-    background-color: #282626;
+    background-color: var(--color-bg-quartiary);
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    border-radius: 14px;
+}
+div.divider{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+h3.port-name{
+    margin: .5rem 1rem;
+    color: var(--color-text-primary);
+}
+p.port-info{
+    margin: .5rem 2rem;
+}
+button.select-btn{
+    padding: 8px 20px;
+    color: var(--color-text-primary);
+    border-radius: 10px;
+    background-color: var(--color-green);
+    border: none;
+    margin-right: 2rem;
+    transition: all 0.4s ease-in-out;
+}
+button.select-btn:hover{
+    background-color: var(--color-green-hover);
+    transform: translateY(-2px);
+    filter: drop-shadow(0 7px 30px #64ff7936);
+}
+.date{
+    font-size: .75rem;
+    text-align: end;
+}
+.create-btn{
+    display: block;
+    margin: 1rem auto;
+    outline: none;
+    color: var(--color-text-primary);
+    background-color: var(--color-action);
+    padding: 7px 14px;
+    border: 0;
+    border-radius: 8px;
+    transition: all 0.4s ease-in-out;
+}
+.create-btn:hover{
+    background-color: var(--color-action-hover);
+    transform: translateY(-2px);
+    filter: drop-shadow(0 7px 30px #646cff36);
+}
+div.assets{
+    margin-left: 2rem;
+    display: flex;
+    gap: .25rem;
+}
+.asset-badge{
+    border: 1px solid;
+    margin: 0;
+    padding: 1px 7px;
+    border-radius: 50px;
+}
+button.show-btn{
+    color: rgb(255, 255, 255);
+    background-color: rgb(137 137 137);
+    border-color: rgb(255, 255, 255);
+    border: 1px solid;
+    margin: 0;
+    padding: 3.5px 7px;
+    border-radius: 50px;
 }

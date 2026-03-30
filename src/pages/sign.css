@@ -2,7 +2,7 @@ h2.title,h4.title{
   margin-top: 1rem;
 }
 form#sign{
-  background-color: #383942;
+  background-color: var(--color-bg-tertiary);
   border-radius: 12px;
   width: 15rem;
   display: flex;
@@ -33,7 +33,7 @@ form#sign{
 button#current{
   outline: none;
   color: #F0F0F0;
-  background-color: #6782ff;
+  background-color: var(--color-action);
   margin-bottom: .5rem;
   padding: 5px 10px;
   border: 0;
@@ -41,7 +41,7 @@ button#current{
   transition: all 0.4s ease-in-out;
 }
 button#current:hover{
-  background: #4A6AFF;
+  background: var(--color-action-hover);
   transform: translateY(-2px);
   filter: drop-shadow(0 7px 30px #646cff5e);
 }
