@@ -172,9 +172,6 @@ async function searchAsset(query) {
                 </div>
               </div>
               <div className="assets-container">
-                {
-                <AssetsInput/>
-                }
                 {/*assets.map((value, i) => (
                   <div className="asset" key={i}>
                     <label>{`Asset ${i + 1}`}</label>
