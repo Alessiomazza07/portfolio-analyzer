@@ -11,7 +11,7 @@ function Navbar(){
         <>
         <div className="navbar">
             <div className="logo">
-              <img src="src/assets/MAGG-logo.png" alt="logo" />
+              <img src="/MAGG-logo.png" alt="logo" />
               <h4>MAGGweb</h4>
             </div>
             <div className="sections">
@@ -20,6 +20,7 @@ function Navbar(){
 
               {user ? (
                 <>
+                  <button onClick={() => navigate('/create')}>Create</button>
                   <button onClick={() => navigate('/portfolios')}>Portfolios</button>
                   <button className='user-icon' onClick={() => navigate('/account')}>
                     <img src={userIcon} alt="User" width={20} height={20}/>

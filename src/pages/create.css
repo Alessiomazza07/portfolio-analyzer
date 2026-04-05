@@ -3,6 +3,7 @@ h1{
   width: fit-content;
   color: var(--color-text-primary);
 }
+
 form#create{
   width: 80%;
   margin: 0 auto;
@@ -12,9 +13,26 @@ form#create{
   border-radius: 10px;
   background-color: var(--color-bg-tertiary);
 }
+
+input{
+  outline: none;
+}
+
+.name{
+  margin: 1rem auto 0;
+}
+div.name>input{
+  text-align: center;
+  font-size: 1.5rem;
+  background: none;
+  outline: none;
+  border: none;
+  color: var(--color-text-primary);
+}
+
 .parameter,.asset{
   display: flex;
-  gap: 1rem;
+  gap: .75rem;
   width: fit-content;
   padding: .5rem;
   border-radius: 10px;
@@ -37,10 +55,11 @@ form#create{
   text-align: center;
   font-size: 1rem;
 }
+
 div.assets-container{
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   align-content: center;
   align-items: center;
   justify-items: center;
@@ -51,17 +70,49 @@ div.assets-container{
   align-items: center;
   justify-content: space-evenly;
 }
-.name{
-  margin: 1rem auto 0;
-}
-div.name>input{
+
+.asset>div>input{
+  width: 7.5rem;
+  border-radius: 4px;
+  padding: 3px 10px 3px 3px;
   text-align: center;
-  font-size: 1.5rem;
-  background: none;
-  outline: none;
-  border: none;
-  color: var(--color-text-primary);
+  font-size: 1rem;
 }
+input.percent{
+  width: 4.5rem;
+}
+
+.asset>div>ul{
+  border-radius: 10px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: var(--color-text-primary);
+  list-style: "none";
+  margin: 0;
+  padding: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1;
+}
+.asset>div>ul>li{
+  padding: 8px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.asset>div>ul::-webkit-scrollbar {
+  padding: 3px 0 3px;
+  width: 6px;
+}
+.asset>div>ul::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-muted);
+  border-radius: 10px;
+}
+
 button.add{
   border-radius: 50%;
   font-size: 1.25rem;
@@ -72,24 +123,35 @@ button.add{
   border: none;
   color: #e7e7e8;
 }
+
 button#build{
   outline: none;
   color: var(--color-text-primary);
-  background-color: var(--color-action);
+  background-color: var(--color-action-2);
   padding: 6px 15px;
   font-size: 1rem;
   width: fit-content;
   height: fit-content;
   border: 0;
   border-radius: 8px;
+  border: 1px solid var(--color-action-2-hover);
+  border-bottom-width: 4px;
+  margin: 0 auto;
+  cursor: pointer;
   transition: all 0.4s ease-in-out;
-  margin: 0 auto 1rem;
 }
 button#build:hover{
   background: var(--color-action-hover);
   transform: translateY(-2px);
   filter: drop-shadow(0 7px 30px #646cff5e);
+  border-bottom-width: 6px;
 }
+button#build:active {
+  filter: brightness(0.90);
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+}
+
 button.remove{
   border: none;
   outline: none;
@@ -97,4 +159,8 @@ button.remove{
   color:var(--color-text-primary);
   padding-right: 0.5rem;
   font-size: 1.5rem;
+}
+
+p.error-message{
+  margin: 0 auto 1rem;
 }

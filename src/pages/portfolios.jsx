@@ -29,7 +29,8 @@ function Portfolios() {
         .select("port_id,port_name,start_date,end_date,benchmark,created_at")
         .eq("user_id", user.user_id);
         if (portError) {
-            console.error("Error fetching portfolios:", portError.message);
+          console.error("Error fetching portfolios:", portError.message);
+          return;
         }
 
         for(let i=0; i < portsList.length; i++){
@@ -40,9 +41,12 @@ function Portfolios() {
 
           if (assetError) {
             console.error("Error fetching assets:", assetError.message);
+            return;
           }
-
+          console.log(data);
+          console.log(data[0]);
           let assetsList = data[0].PortfolioAssets;
+          console.log(data[0].PortfolioAssets);
           portsList[i].asset_ids = [];
           portsList[i].asset_symbols = [];
           portsList[i].asset_names = [];
@@ -157,8 +161,9 @@ function Portfolios() {
         <>
           <h1>Your portfolios</h1>
           <div>
+            <button type="button" className='create-btn' onClick={() => navigate('/create')}>Create new portfolio</button>
             {portfolios.length === 0 ? (
-              <p>You have not created any portfolio. Go build one!</p>
+              <p style={{ margin: "1rem auto"}}>You have not created any portfolio. Go build one!</p>
             ) : (
               <div>
                 {portfolios.map((p) => (
@@ -209,7 +214,6 @@ function Portfolios() {
                 ))}
               </div>
             )}
-            <button type="button" className='create-btn' onClick={() => navigate('/create')}>Create new portfolio</button>
           </div>
         </>
   );

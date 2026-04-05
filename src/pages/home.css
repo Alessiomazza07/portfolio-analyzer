@@ -9,24 +9,32 @@ h1#cta-title{
   justify-content: space-between;
   align-items: flex-start;
 }
+
 button#cta-but{
-  outline: none;
+  cursor: pointer;
   border-radius: 25px;
+  transition: all 0.4s ease-in-out;
+  background-color: var(--color-action-2);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--color-action-2-hover);
+  border-bottom-width: 4px;
   font-size: 1.25rem;
   width: fit-content;
   height: fit-content;
-  padding: 10px 20px;
-  background-color: var(--color-action);
-  border: none;
-  color: var(--color-text-primary);
-  margin: 1rem 4rem;
-  transition: all 0.4s ease-in-out;
 }
 button#cta-but:hover{
   background: var(--color-action-hover);
   transform: translateY(-2px);
   filter: drop-shadow(0 7px 30px #646cff36);
+  border-bottom-width: 6px;
 }
+button#cta-but:active {
+  filter: brightness(0.90);
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+}
+
 div#cta{
   margin: 3rem 7rem 3rem auto;
   padding: 1rem;

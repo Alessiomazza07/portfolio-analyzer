@@ -17,7 +17,7 @@ function Home(){
               <h1 id="cta-title">Build<br />your own<br />portfolio</h1>
               <button id="cta-but" onClick={(e) => fromHeroSection(e)}>Start Now</button>
             </div>
-            <img id="heroimg" src="src/assets/hero.png" alt="hero.png"/>
+            <img id="heroimg" src="/hero.png" alt="hero.png"/>
         </div>
         </>
     );
