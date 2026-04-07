@@ -1,6 +1,45 @@
 import YahooFinance from "yahoo-finance2";
 
 export default async function handler(req, res) {
+  try {
+    const { assets: assetsQuery, start, end } = req.query;
+    if (!assetsQuery || !start || !end) {
+      return res.status(400).json({ error: "Parametri mancanti" });
+    }
+
+    const assets = assetsQuery.split(",");
+    const startDate = Number(start); // timestamp in secondi
+    const endDate = Number(end);
+
+    const yahooFinance = new YahooFinance();
+    const interval = "1d";
+
+    const histories = await Promise.all(
+      assets.map(async (asset) => {
+        const history = await yahooFinance.historical(asset, {
+          period1: startDate,
+          period2: endDate,
+          interval,
+        });
+
+        return {
+          symbol: asset,
+          prices: history.map((d) => ({ date: d.date, close: d.close })),
+        };
+      })
+    );
+
+    res.status(200).json(histories);
+  } catch (err) {
+    console.error("Errore Yahoo Finance:", err.message);
+    res.status(500).json({ error: "Errore server" });
+  }
+}
+/*
+Versione 4
+import YahooFinance from "yahoo-finance2";
+
+export default async function handler(req, res) {
   console.log("chiamata api");
   var { assets } = req.query;
   console.log("assets: ",assets);
@@ -43,6 +82,7 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Errore server" });
   }
 }
+*/
 
 /*
 Versione 3
