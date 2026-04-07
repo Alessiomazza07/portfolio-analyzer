@@ -104,7 +104,7 @@ function Create(){
     const assetInputs=document.querySelectorAll('.asset>div>input');
     for(let a of assetInputs){
       let assetResult = await searchAsset(a.value);
-      console.log(assetResult);
+      //console.log(assetResult);
       let assetObject = {
         symbol: assetResult[0].symbol,
         asset_name: a.value,
@@ -166,40 +166,67 @@ function Create(){
     return true;
   }
 
- 
-  const getHistories = async (assetsList) => {
-    const query = encodeURIComponent(assetsList.join(","));
-    console.log("Query:", query);
-    const start = encodeURIComponent(new Date(startDate).getTime() / 1000);
-    console.log("Start date:", start);
-    const end = encodeURIComponent(new Date(endDate).getTime() / 1000);
-    console.log("End date:", end);
-
-    const res = await fetch(`/api/histories?assets=${query}&start=${start}&end=${end}`);
-    console.log("Response:", res);
-    /*
-    if (!res.ok) {
-      const text = await res.text();
-      console.error("Errore API:", text);
-      return;
-    }
-    */
-    const data = await res.json();
-    console.log(data);
-  }
-
-
-  const areDatesAvailable = async (query) => {
-    if (!query) return [];
+  const getHistories = async (assets) => {
     try {
-        const res = await fetch(`/api/data`);
-        const data = await res.json();
-        console.log(data.quotes);
-        return data.quotes;
-    } catch (error) {
-        console.error("Errore API:", error);
-        return [];
+      const query = new URLSearchParams({
+        assets: assets.join(','),
+        start: Math.floor(new Date(startDate) / 1000),
+        end: Math.floor(new Date(endDate) / 1000),
+      });
+
+      const res = await fetch(`/api/histories?${query.toString()}`);
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Errore API: ${text}`);
+      }
+
+      const data = await res.json();
+      //console.log("Dati storici:", data);
+      return data;
+    } catch (err) {
+      console.error("Errore chiamata getHistories:", err);
+      return null;
     }
+  };
+
+  const getAvailability = async (assets) => {
+    try {
+      const query = new URLSearchParams({
+        assets: assets.join(','),
+        start: Math.floor(new Date(startDate) / 1000),
+        end: Math.floor(new Date(endDate) / 1000),
+      });
+
+      const res = await fetch(`/api/checkDatesAvailability?${query.toString()}`);
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Errore API: ${text}`);
+      }
+
+      const data = await res.json();
+      console.log("Disponibilità dati:", data);
+      return data;
+    } catch (err) {
+      console.error("Errore chiamata getAvailability:", err);
+      return null;
+    }
+  };
+
+
+  const areDatesAvailable = async () => {
+    const availability = await getAvailability(assets);
+    availability.forEach(a => {
+      if (!a.available) {
+        console.log(`${a.symbol} non ha dati nel range richiesto`);
+        setMessage("Unavailable data for selected period");
+        return false;
+      }
+      console.log(`${a.symbol} ha dati da ${new Date(a.firstDate).toLocaleDateString()} a ${new Date(a.lastDate).toLocaleDateString()}`);
+      setMessage(" ");
+      return true;
+    });
   }
 
   /*
@@ -238,11 +265,8 @@ function Create(){
     if(isDuplicate){return;}
     if(!checkParameters()){return;}
     if(!checkWeights()){return;}
-
-    
-    //controllare se le date sono disponibili per lo storico di tutte le azioni
-    //const result = await areDatesAvailable();
-    //console.log(result);
+    const checkDates = await areDatesAvailable();
+    if(!checkDates){return;}
 
     
     const assetList = await acquireAssetsParameters();
@@ -281,6 +305,7 @@ function Create(){
 
     const symbolList = assetList.map(a => a.symbol);
     const histories = await getHistories(symbolList);
+    console.log(histories);
 
     
     /*

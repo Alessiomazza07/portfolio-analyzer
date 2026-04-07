@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     }
 
     const assets = assetsQuery.split(",");
-    const startDate = Number(start); // timestamp in secondi
+    const startDate = Number(start);
     const endDate = Number(end);
 
     const yahooFinance = new YahooFinance();
@@ -27,7 +27,6 @@ export default async function handler(req, res) {
             return { symbol: asset, available: false };
           }
 
-          // Ritorna solo le date iniziale e finale disponibili
           const firstDate = history[0].date;
           const lastDate = history[history.length - 1].date;
 
