@@ -6,10 +6,11 @@ export default async function handler(req, res) {
     if (!assetsQuery || !start || !end) {
       return res.status(400).json({ error: "Parametri mancanti" });
     }
-
+    
     const assets = assetsQuery.split(",");
     const startDate = Number(start);
     const endDate = Number(end);
+    console.log({ asset, startDate, endDate });
 
     const yahooFinance = new YahooFinance();
     const interval = "1d";
